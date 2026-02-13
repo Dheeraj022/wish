@@ -21,7 +21,7 @@ const TypewriterText = ({ text, onComplete }) => {
     return <span>{displayText}</span>;
 };
 
-const LoveGame = () => {
+const LoveGame = ({ name }) => {
     const [gameState, setGameState] = useState('playing'); // 'playing', 'typing', 'revealed'
 
     const handleReveal = () => {
@@ -146,9 +146,9 @@ const LoveGame = () => {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.5 }}
-                                    style={{ fontSize: 'clamp(1.2rem, 3vw, 2rem)', color: '#ffccd5', marginTop: '20px', fontFamily: 'var(--font-heading)' }}
+                                    style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)', color: '#ffccd5', marginTop: '20px', fontFamily: 'var(--font-heading)' }}
                                 >
-                                    Happy Valentine’s Day My Love 💖
+                                    Happy Valentine’s Day {name || 'My Love'} 💖
                                 </motion.p>
                             </motion.div>
                         )}

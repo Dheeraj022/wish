@@ -55,7 +55,7 @@ const MusicPlayer = () => {
     };
 
     return (
-        <div className="music-player" style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 100 }}>
+        <div className="music-player" style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 100, display: 'none' }}>
             <audio ref={audioRef} src={musicUrl} loop />
             <button
                 onClick={togglePlay}

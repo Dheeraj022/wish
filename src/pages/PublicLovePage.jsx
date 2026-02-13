@@ -115,7 +115,7 @@ const PublicLovePage = () => {
 
             {/* Love Game Section */}
             <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <LoveGame />
+                <LoveGame name={profile?.username} />
             </section>
 
             <footer style={{ textAlign: 'center', padding: '40px', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
