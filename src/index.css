@@ -1,13 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap');
+
 :root {
-  --color-bg: #0a0a0a;
-  --color-primary: #8B0000; /* Deep Red */
-  --color-secondary: #ff4d6d; /* Soft Pink */
-  --color-text: #ffffff;
-  --color-text-muted: #cccccc;
-  --color-card-bg: rgba(20, 20, 20, 0.8);
-  --font-family-body: 'Inter', system-ui, sans-serif;
-  --font-family-heading: 'Great Vibes', cursive;
-  --transition-speed: 0.3s;
+  /* Premium Dark Romantic Palette */
+  --color-bg-dark: #3B0000;
+  --color-bg-light: #8B0000;
+  --color-love-red: #ff4d6d;
+  --color-soft-pink: rgba(255, 192, 203, 0.6);
+  --color-glass-bg: rgba(20, 20, 20, 0.6);
+  --color-glass-border: rgba(255, 77, 109, 0.3);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #cccccc;
+
+  /* Fonts */
+  --font-heading: 'Great Vibes', cursive;
+  --font-body: 'Inter', sans-serif;
+
+  /* Shadows & Glows */
+  --glow-soft: 0 0 20px rgba(255, 77, 109, 0.4);
+  --glow-intense: 0 0 40px rgba(139, 0, 0, 0.8);
 }
 
 * {
@@ -17,41 +27,76 @@
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-family-body);
-  overflow-x: hidden;
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, var(--color-bg-dark), var(--color-bg-light));
+  color: var(--color-text-primary);
   min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-heading);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
   font-weight: 400;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* Glassmorphism Utility */
+.glass-card {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
+.text-gradient {
+  background: linear-gradient(to right, #ff4d6d, #ffccd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Animations */
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-love-red);
+  border-radius: 4px;
+}
+
+/* Floating Animation */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 .floating-heart {
   position: fixed;
   color: var(--color-primary);
   opacity: 0.5;
-  pointer-events: none;
-  z-index: -1;
   animation: float 3s ease-in-out infinite;
 }

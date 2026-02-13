@@ -12,8 +12,8 @@ const MusicPlayer = () => {
         const handleInteraction = () => {
             if (audioRef.current && audioRef.current.paused) {
                 // Ensure we respect the start time if not already played
-                if (audioRef.current.currentTime < 67) {
-                    audioRef.current.currentTime = 67;
+                if (audioRef.current.currentTime < 60) {
+                    audioRef.current.currentTime = 60;
                 }
                 const playPromise = audioRef.current.play();
                 if (playPromise !== undefined) {
