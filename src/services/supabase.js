@@ -1,0 +1,23 @@
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+if (!supabaseUrl || !supabaseKey) {
+  console.error("Missing Supabase URL or Key. Please check your .env file.")
+}
+
+let supabaseClient = null;
+
+if (supabaseUrl && supabaseKey) {
+  try {
+    supabaseClient = createClient(supabaseUrl, supabaseKey)
+  } catch (e) {
+    console.error("Supabase client creation failed:", e.message);
+  }
+} else {
+  console.error("Missing Supabase URL or Key. Please check your .env file.")
+}
+
+export const supabase = supabaseClient;
+
