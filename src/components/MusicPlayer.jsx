@@ -4,26 +4,43 @@ import { Music, Pause, Play } from 'lucide-react';
 const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
-    // Default romantic music URL (royalty free or placeholder)
-    // Using a sample URL for now. In production, user should upload a file to assets.
-    const musicUrl = "https://cdn.pixabay.com/download/audio/2022/02/07/audio_184f4b97d1.mp3?filename=piano-moment-116298.mp3";
+    // Local file in public folder
+    const musicUrl = "/dil.mp3";
 
     useEffect(() => {
-        // Attempt autoplay
-        if (audioRef.current) {
-            audioRef.current.volume = 0.5;
-            const playPromise = audioRef.current.play();
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        setIsPlaying(true);
-                    })
-                    .catch((error) => {
-                        console.log("Autoplay prevented by browser:", error);
-                        setIsPlaying(false);
-                    });
+        // Handle autoplay on first user interaction if blocked
+        const handleInteraction = () => {
+            if (audioRef.current && audioRef.current.paused) {
+                // Ensure we respect the start time if not already played
+                if (audioRef.current.currentTime < 67) {
+                    audioRef.current.currentTime = 67;
+                }
+                const playPromise = audioRef.current.play();
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(() => {
+                            setIsPlaying(true);
+                            // Remove listeners once playing
+                            document.removeEventListener('click', handleInteraction);
+                            document.removeEventListener('keydown', handleInteraction);
+                            document.removeEventListener('touchstart', handleInteraction);
+                        })
+                        .catch((error) => {
+                            console.log("Autoplay still prevented:", error);
+                        });
+                }
             }
-        }
+        };
+
+        document.addEventListener('click', handleInteraction);
+        document.addEventListener('keydown', handleInteraction);
+        document.addEventListener('touchstart', handleInteraction);
+
+        return () => {
+            document.removeEventListener('click', handleInteraction);
+            document.removeEventListener('keydown', handleInteraction);
+            document.removeEventListener('touchstart', handleInteraction);
+        };
     }, []);
 
     const togglePlay = () => {
@@ -55,13 +72,9 @@ const MusicPlayer = () => {
             >
                 {isPlaying ? <Pause size={24} /> : <Play size={24} />}
             </button>
-            {!isPlaying && (
-                <div style={{ position: 'absolute', right: '60px', bottom: '10px', background: 'white', color: 'black', padding: '5px 10px', borderRadius: '20px', fontSize: '12px', whiteSpace: 'nowrap', opacity: 0.8 }}>
-                    Tap to Play Music 🎵
-                </div>
-            )}
         </div>
     );
+
 };
 
 export default MusicPlayer;
