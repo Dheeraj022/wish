@@ -119,7 +119,7 @@ const PublicLovePage = () => {
             </section>
 
             <footer style={{ textAlign: 'center', padding: '40px', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
-                Made with ❤️ for Valentine's Day
+                Made with ❤️ for your Birthday
             </footer>
         </div>
     );

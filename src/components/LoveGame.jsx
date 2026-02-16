@@ -148,7 +148,7 @@ const LoveGame = ({ name }) => {
                                     transition={{ delay: 0.5 }}
                                     style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)', color: '#ffccd5', marginTop: '20px', fontFamily: 'var(--font-heading)' }}
                                 >
-                                    Happy Valentine’s Day {name || 'My Love'} 💖
+                                    Happy Birthday {name || 'My Love'} 💖
                                 </motion.p>
                             </motion.div>
                         )}
