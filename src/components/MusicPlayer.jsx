@@ -5,7 +5,7 @@ const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
     // Local file in public folder
-    const musicUrl = "/dil.mp3";
+    const musicUrl = "/die.mp3";
 
     useEffect(() => {
         // Handle autoplay on first user interaction if blocked
